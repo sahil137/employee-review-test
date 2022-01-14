@@ -10,6 +10,12 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.use(express.urlencoded({ extended: true }));
+
+// for style and script
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
+
 const port = process.env.PORT || 8000;
 
 app.use('/', require('./routes'));
