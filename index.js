@@ -12,6 +12,8 @@ app.set('views', './views');
 
 const port = process.env.PORT || 8000;
 
+app.use('/', require('./routes'));
+
 // listen to port
 app.listen(port, function (error) {
   if (error) {

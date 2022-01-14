@@ -8,7 +8,7 @@
     "start": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sahil",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^11.0.0",
