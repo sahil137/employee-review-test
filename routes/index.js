@@ -6,4 +6,5 @@ const employeeRoute = require('./employeeRoute');
 
 router.get('/', homeController.home);
 router.use('/employee', employeeRoute);
+
 module.exports = router;

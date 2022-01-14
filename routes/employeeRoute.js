@@ -18,4 +18,12 @@ router.get(
   employeeController.signout
 );
 
+// ADMIN routes
+router.get(
+  '/admin/assignReview',
+  passport.checkAuthentication,
+  passport.checkAdmin,
+  employeeController.assignReview
+);
+
 module.exports = router;

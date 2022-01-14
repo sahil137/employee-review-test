@@ -53,3 +53,16 @@ module.exports.signout = function (req, res) {
   req.logout();
   return res.redirect('/employee/signout');
 };
+
+// assign reviews to employees :: ADMIN
+
+module.exports.assignReview = async function (req, res) {
+  try {
+    if (req.isAuthenticated()) {
+      return res.redirect('back');
+    }
+  } catch (error) {
+    console.log(`Error in assigning task: ${error}`);
+    res.redirect('back');
+  }
+};
