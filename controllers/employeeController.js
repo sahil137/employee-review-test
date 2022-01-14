@@ -35,7 +35,7 @@ module.exports.createEmployee = async function (req, res) {
       console.log(`Error in creating employee`);
       return res.redirect('back');
     }
-    return res.redirect('/employee/sign');
+    return res.redirect('/employee/signin');
   } catch (error) {
     console.log(`Error in creating Employee: ${error}`);
     res.redirect('back');
@@ -46,4 +46,10 @@ module.exports.createEmployee = async function (req, res) {
 module.exports.createSession = function (req, res) {
   console.log(`Session created successfully`);
   return res.redirect('/');
+};
+
+// sign out
+module.exports.signout = function (req, res) {
+  req.logout();
+  return res.redirect('/employee/signout');
 };

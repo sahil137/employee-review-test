@@ -39,3 +39,11 @@ passport.deserializeUser(function (id, done) {
     return done(null, user);
   });
 });
+
+// check if user is authenticated
+passport.checkAuthentication = function (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  return res.redirect('/employee/signin');
+};
