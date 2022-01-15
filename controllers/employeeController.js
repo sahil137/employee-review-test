@@ -56,7 +56,6 @@ module.exports.signout = function (req, res) {
 };
 
 // assign reviews to employees :: ADMIN
-
 module.exports.assignReview = async function (req, res) {
   try {
     const users = await User.find({});
@@ -67,6 +66,7 @@ module.exports.assignReview = async function (req, res) {
   }
 };
 
+// assign review to employees :: ADMIN
 module.exports.assignReviewAction = async function (req, res) {
   const { employee, reviewer } = req.body;
   try {
@@ -88,6 +88,17 @@ module.exports.assignReviewAction = async function (req, res) {
     return res.redirect('back');
   } catch (error) {
     console.log(`Error in assigning review: ${error}`);
+    res.redirect('back');
+  }
+};
+
+// render admin view :: ADMIN
+module.exports.adminView = async function (req, res) {
+  try {
+    const users = await User.find({});
+    return res.render('admin_view', { users });
+  } catch (error) {
+    console.log(`Error in showing records: ${error}`);
     res.redirect('back');
   }
 };

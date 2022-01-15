@@ -36,4 +36,12 @@ router.post(
   employeeController.assignReviewAction
 );
 
+// admin view
+router.get(
+  '/admin/admin-view',
+  passport.checkAuthentication,
+  passport.checkAdmin,
+  employeeController.adminView
+);
+
 module.exports = router;
