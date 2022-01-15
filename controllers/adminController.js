@@ -83,3 +83,47 @@ module.exports.addEmployeeAction = async function (req, res) {
     res.redirect('back');
   }
 };
+
+// delete employee
+module.exports.deleteEmployee = async function (req, res) {
+  const { id } = req.params;
+  try {
+    await User.findByIdAndDelete(id);
+    console.log('Employee Deleted Successfully');
+    res.redirect('back');
+  } catch (error) {
+    console.log(`Error in deleting Employee: ${error}`);
+    res.redirect('back');
+  }
+};
+
+// Update employee view
+module.exports.updateEmployee = async function (req, res) {
+  const { id } = req.params;
+  try {
+    const user = await User.findById(id);
+    return res.render('update_employee', { user });
+  } catch (error) {
+    console.log(`Error in updating employee :  ${error}`);
+    res.redirect('back');
+  }
+};
+
+// update employee action
+module.exports.updateEmployeeAction = async function (req, res) {
+  const { id } = req.params;
+  const { name, password, admin, email } = req.body;
+  try {
+    await User.findByIdAndUpdate(id, {
+      name,
+      password,
+      email,
+      isAdmin: admin,
+    });
+    console.log('Employee updated successfully');
+    return res.redirect('/admin/admin-view');
+  } catch (error) {
+    console.log(`Error in updating employee :  ${error}`);
+    res.redirect('back');
+  }
+};

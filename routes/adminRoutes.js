@@ -44,4 +44,25 @@ router.post(
   adminController.addEmployeeAction
 );
 
+router.get(
+  '/delete/:id',
+  passport.checkAuthentication,
+  passport.checkAdmin,
+  adminController.deleteEmployee
+);
+
+router.get(
+  '/update/:id',
+  passport.checkAuthentication,
+  passport.checkAdmin,
+  adminController.updateEmployee
+);
+
+router.post(
+  '/update/:id',
+  passport.checkAuthentication,
+  passport.checkAdmin,
+  adminController.updateEmployeeAction
+);
+
 module.exports = router;
