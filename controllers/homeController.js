@@ -1,3 +1,6 @@
 module.exports.home = function (req, res) {
-  res.render('home');
+  if (req.isAuthenticated()) {
+    return res.render('home');
+  }
+  return res.redirect('/employee/signup');
 };

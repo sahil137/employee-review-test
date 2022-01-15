@@ -49,11 +49,19 @@ passport.checkAuthentication = function (req, res, next) {
 };
 
 // check for admin
-
 passport.checkAdmin = function (req, res, next) {
   if (!req.user.isAdmin) {
     console.log(`Employees are not allowed to access this resource`);
     return res.redirect('back');
   }
   return next();
+};
+
+// set authenticated user for views
+
+passport.setAuthenticatedUser = function (req, res, next) {
+  if (req.isAuthenticated()) {
+    res.locals.user = req.user;
+  }
+  next();
 };

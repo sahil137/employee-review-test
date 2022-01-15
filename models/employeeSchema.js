@@ -19,6 +19,18 @@ const employeeSchema = new mongoose.Schema(
       type: Boolean,
       required: true,
     },
+    myReviews: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Employee',
+      },
+    ],
+    myEvaluations: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Employee',
+      },
+    ],
   },
   {
     timestamps: true,

@@ -9,7 +9,7 @@ router.get('/signin', employeeController.signIn);
 router.post('/create', employeeController.createEmployee);
 router.post(
   '/create-session',
-  passport.authenticate('local', { failureRedirect: '/users/login' }),
+  passport.authenticate('local', { failureRedirect: '/employee/signin' }),
   employeeController.createSession
 );
 router.get(
@@ -19,11 +19,21 @@ router.get(
 );
 
 // ADMIN routes
+
+// render assign review page
 router.get(
-  '/admin/assignReview',
+  '/admin/assign-review',
   passport.checkAuthentication,
   passport.checkAdmin,
   employeeController.assignReview
+);
+
+// assign review action
+router.post(
+  '/admin/assign-review',
+  passport.checkAuthentication,
+  passport.checkAdmin,
+  employeeController.assignReviewAction
 );
 
 module.exports = router;

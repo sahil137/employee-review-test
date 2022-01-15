@@ -1,5 +1,6 @@
 // requiring employee as user to avoid confusion
 const User = require('../models/employeeSchema');
+const Review = require('../models/reviewSchema');
 
 // render sign up page
 module.exports.signUp = function (req, res) {
@@ -58,11 +59,35 @@ module.exports.signout = function (req, res) {
 
 module.exports.assignReview = async function (req, res) {
   try {
-    if (req.isAuthenticated()) {
-      return res.redirect('back');
-    }
+    const users = await User.find({});
+    return res.render('assign_review', { users });
   } catch (error) {
     console.log(`Error in assigning task: ${error}`);
+    res.redirect('back');
+  }
+};
+
+module.exports.assignReviewAction = async function (req, res) {
+  const { employee, reviewer } = req.body;
+  try {
+    if (employee === reviewer) {
+      console.log(`You cannot assign reviews to yourself`);
+      return res.redirect('/employee/admin/assign-review');
+    }
+
+    const to = await User.findById(employee);
+    const from = await User.findById(reviewer);
+
+    to.myReviews.push(from);
+    from.myEvaluations.push(to);
+    to.save();
+    from.save();
+
+    console.log('Review Assigned Successfully');
+
+    return res.redirect('back');
+  } catch (error) {
+    console.log(`Error in assigning review: ${error}`);
     res.redirect('back');
   }
 };
