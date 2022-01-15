@@ -61,12 +61,19 @@ router.get(
 );
 
 // update employee action
-
 router.post(
   '/update/:id',
   passport.checkAuthentication,
   passport.checkAdmin,
   adminController.updateEmployeeAction
+);
+
+// make employee admin
+router.post(
+  '/make-admin',
+  passport.checkAuthentication,
+  passport.checkAdmin,
+  adminController.makeAdmin
 );
 
 // sign out

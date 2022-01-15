@@ -119,6 +119,22 @@ module.exports.updateEmployee = async function (req, res) {
   }
 };
 
+// make employee admin
+module.exports.makeAdmin = async function (req, res) {
+  const { adminName } = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(adminName, { isAdmin: true });
+    await user.save();
+
+    console.log('Employee made admin successfully');
+
+    return res.redirect('back');
+  } catch (error) {
+    console.log(`Error in making employee admin: ${error}`);
+    res.redirect('back');
+  }
+};
+
 // update employee action :: ADMIN
 module.exports.updateEmployeeAction = async function (req, res) {
   const { id } = req.params;
