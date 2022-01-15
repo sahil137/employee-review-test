@@ -15,9 +15,9 @@
         </div>
         <div class="col-6 d-flex justify-content-end">
           <a
-            href="/admin/adduser"
+            href="/employee/admin/add-employee"
             type="button"
-            class="btn btn-primary align-self-center"
+            class="align-self-center"
             >Add a new Employee</a
           >
         </div>
@@ -46,17 +46,17 @@
               <%} else {%>
               <td>No</td>
               <%}%>
-              <td class="text-end">
+              <td>
                 <a
                   href="employee/admin/update/<%=user.id%>"
                   type="button"
-                  class="btn btn-primary btn-small"
+                  class="btn btn-primary"
                   >Edit</a
                 >
                 <a
                   href="employee/admin/delete/<%=user.id%>"
                   type="button"
-                  class="btn btn-danger btn-small"
+                  class="btn btn-danger"
                   >Delete</a
                 >
               </td>

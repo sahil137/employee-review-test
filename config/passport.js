@@ -58,7 +58,6 @@ passport.checkAdmin = function (req, res, next) {
 };
 
 // set authenticated user for views
-
 passport.setAuthenticatedUser = function (req, res, next) {
   if (req.isAuthenticated()) {
     res.locals.user = req.user;

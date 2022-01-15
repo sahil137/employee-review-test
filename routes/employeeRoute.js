@@ -18,7 +18,7 @@ router.get(
   employeeController.signout
 );
 
-// ADMIN routes
+// --------------ADMIN ROUTES ------------------//
 
 // render assign review page
 router.get(
@@ -42,6 +42,22 @@ router.get(
   passport.checkAuthentication,
   passport.checkAdmin,
   employeeController.adminView
+);
+
+// add employee
+router.get(
+  '/admin/add-employee',
+  passport.checkAuthentication,
+  passport.checkAdmin,
+  employeeController.addEmployee
+);
+
+// add employee action
+router.post(
+  '/admin/add-employee',
+  passport.checkAuthentication,
+  passport.checkAdmin,
+  employeeController.addEmployeeAction
 );
 
 module.exports = router;
