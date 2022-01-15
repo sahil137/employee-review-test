@@ -1,4 +1,5 @@
 const User = require('../models/employeeSchema');
+const Review = require('../models/reviewSchema');
 
 // assign reviews to employees :: ADMIN
 module.exports.assignReview = async function (req, res) {
@@ -20,16 +21,18 @@ module.exports.assignReviewAction = async function (req, res) {
       return res.redirect('/admin/assign-review');
     }
 
+    // find the employee that has to write review and
+    // the employee for which the review has to be written
     const to = await User.findById(employee);
     const from = await User.findById(reviewer);
 
+    // push the users in myReviews and myEvaluations array
     to.myReviews.push(from);
     from.myEvaluations.push(to);
     to.save();
     from.save();
 
     console.log('Review Assigned Successfully');
-
     return res.redirect('back');
   } catch (error) {
     console.log(`Error in assigning review: ${error}`);
@@ -46,6 +49,12 @@ module.exports.adminView = async function (req, res) {
     console.log(`Error in showing records: ${error}`);
     res.redirect('back');
   }
+};
+
+// admin sign out
+module.exports.signout = function (req, res) {
+  req.logout();
+  return res.redirect('/employee/signin');
 };
 
 // render add employee page :: ADMIN
@@ -84,11 +93,12 @@ module.exports.addEmployeeAction = async function (req, res) {
   }
 };
 
-// delete employee
+// delete employee :: ADMIN
 module.exports.deleteEmployee = async function (req, res) {
   const { id } = req.params;
   try {
     await User.findByIdAndDelete(id);
+
     console.log('Employee Deleted Successfully');
     res.redirect('back');
   } catch (error) {
@@ -97,7 +107,7 @@ module.exports.deleteEmployee = async function (req, res) {
   }
 };
 
-// Update employee view
+// Update employee view :: ADMIN
 module.exports.updateEmployee = async function (req, res) {
   const { id } = req.params;
   try {
@@ -109,7 +119,7 @@ module.exports.updateEmployee = async function (req, res) {
   }
 };
 
-// update employee action
+// update employee action :: ADMIN
 module.exports.updateEmployeeAction = async function (req, res) {
   const { id } = req.params;
   const { name, password, admin, email } = req.body;

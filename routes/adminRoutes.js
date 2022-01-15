@@ -44,6 +44,7 @@ router.post(
   adminController.addEmployeeAction
 );
 
+// delete employee from list
 router.get(
   '/delete/:id',
   passport.checkAuthentication,
@@ -51,6 +52,7 @@ router.get(
   adminController.deleteEmployee
 );
 
+// update employee page
 router.get(
   '/update/:id',
   passport.checkAuthentication,
@@ -58,11 +60,16 @@ router.get(
   adminController.updateEmployee
 );
 
+// update employee action
+
 router.post(
   '/update/:id',
   passport.checkAuthentication,
   passport.checkAdmin,
   adminController.updateEmployeeAction
 );
+
+// sign out
+router.get('/signout', passport.checkAuthentication, adminController.signout);
 
 module.exports = router;

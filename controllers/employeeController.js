@@ -52,5 +52,5 @@ module.exports.createSession = function (req, res) {
 // sign out
 module.exports.signout = function (req, res) {
   req.logout();
-  return res.redirect('/employee/signout');
+  return res.redirect('/employee/signin');
 };

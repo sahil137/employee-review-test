@@ -5,9 +5,13 @@
     <a href="/" class="navbar-brand">Welcome <%=locals.user.name%></a>
     <%}%>
     <div class="d-flex">
+      <%if (locals.user && locals.user.isAdmin) {%>
       <a class="navbar-brand" href="/admin/assign-review">Assign Reviews</a>
       <a class="navbar-brand" href="/admin/admin-view">View Employees</a>
-      <a class="navbar-brand" href="/signout">Sign out</a>
+      <a class="navbar-brand" href="/admin/signout">Sign out</a>
+      <%} else { %>
+      <a class="navbar-brand" href="/employee/signout">Sign out</a>
+      <% } %>
     </div>
   </nav>
 </header>
