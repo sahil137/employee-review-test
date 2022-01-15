@@ -22,7 +22,7 @@ const employeeSchema = new mongoose.Schema(
     myReviews: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Employee',
+        ref: 'Review',
       },
     ],
     myEvaluations: [

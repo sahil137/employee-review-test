@@ -12,7 +12,7 @@ const reviewSchema = new mongoose.Schema(
       ref: 'Employee',
     },
 
-    for: {
+    to: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Employee',
     },
