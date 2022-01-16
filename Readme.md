@@ -10,4 +10,8 @@ A simple app where employees can review other employees and admins can update em
 
 ## Screenshots
 
+<<<<<<< HEAD
 ![Sign Up]('./images/signup.png')
+=======
+![Sign Up]('/images/signup')
+>>>>>>> 875b0461124b93b4f621ab694fe316aae9e9768e
