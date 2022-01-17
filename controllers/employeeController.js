@@ -4,11 +4,17 @@ const Review = require('../models/reviewSchema');
 
 // render sign up page
 module.exports.signUp = function (req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect('back');
+  }
   return res.render('signup');
 };
 
 // render sign in page
 module.exports.signIn = function (req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect('back');
+  }
   return res.render('signin');
 };
 
